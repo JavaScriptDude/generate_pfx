@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 from __future__ import print_function
 # http://python-future.org/compatible_idioms.html
 
@@ -7,7 +8,9 @@ from __future__ import print_function
 # Current version assumes Posix style OS (eg. *nix -or- Cygwin on windows)
 # .: Sample :.
 # export PKCS_PASSWORD=<your_strong_password>
-# python3 ./generate_pfx.py --privkey "<path_to_privkey_pem>" --cert "<path_to_cert_pem>"
+# generate_pfx --privkey "<path_to_privkey_pem>" --cert "<path_to_cert_pem>"
+# .: deploy to /usr/local/bin on linux :.
+# sudo ln -s ${PWD}/generate_pfx.py /usr/local/bin/generate_pfx
 # .: Other :.
 # Author: Timothy C. Quinn
 # Home: https://github.com/JavaScriptDude/generate_pfx
