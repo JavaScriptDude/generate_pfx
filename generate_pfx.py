@@ -1,6 +1,18 @@
-# export PKCS_PASSWORD=_passwordfoo_
-# python3 ./generate_pfx.py --privkey "<path_to_privkey_pem>" --cert "<path_to_cert_pem>"
+from __future__ import print_function
+# http://python-future.org/compatible_idioms.html
 
+#########################################
+# .: generate_pfx.py :.
+# Generates PKCS 12 archive by processing private key pem file, certificate pem file and a password
+# Current version assumes Posix style OS (eg. *nix -or- Cygwin on windows)
+# .: Sample :.
+# export PKCS_PASSWORD=<your_strong_password>
+# python3 ./generate_pfx.py --privkey "<path_to_privkey_pem>" --cert "<path_to_cert_pem>"
+# .: Other :.
+# Author: Timothy C. Quinn
+# Home: https://github.com/JavaScriptDude/generate_pfx
+# Licence: https://opensource.org/licenses/MIT
+#########################################
 import os
 import sys
 from getopt import getopt as getopts
@@ -27,8 +39,6 @@ def main(argv):
             print(s)
         if exitCode > -1: sys.exit(exitCode)
 
-    print('.: generate_pfx.py started :.')
-
     if "PKCS_PASSWORD" not in os.environ:
         printCli("Missing PKCS Password in PKCS_PASSWORD environment variable!", exitCode=2)
 
@@ -49,8 +59,7 @@ def main(argv):
         printCli(exc, exitCode=2)
     for o, v in goOpts:
         if o in ("-?", "-h", "--help"):
-            printCli()
-            sys.exit()
+            printCli(exitCode=0)
         elif o in ("-p", "--privkey"):
             opts['privkey'] = v.strip()
         elif o in ("-c", "--cert"):
@@ -61,8 +70,6 @@ def main(argv):
             opts['clobber'] = True
         elif o in ("-d", "--dryrun"):
             opts['dryrun'] = True
-
-
 
     # validate cli args
     k='privkey'; v=opts[k] if k in opts else None
@@ -89,6 +96,9 @@ def main(argv):
 
     if os.path.isfile(opts['pfx_pem']) and not opts['clobber']:
         printCli("PFX already exists and clobber (--clobber) not specified. Ignoring. Pfx path = {}".format(opts['pfx_pem']), exitCode=2)
+
+    # cli validation complete
+    print('.: generate_pfx.py started :.')
 
     # Read in cert
     cert = crypto.load_certificate(
