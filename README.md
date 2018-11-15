@@ -14,3 +14,6 @@ Parameters:
  --dryrun (-d)                        Will run all code except writing of pfx
  --clobber (-c)                       Overwrite pfx if already existing
 ```
+Important: set an environment variable PKCS_PASSWORD to the password you want eg:
+
+```export PKCS_PASSWORD=_foobar_```
