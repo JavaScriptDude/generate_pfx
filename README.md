@@ -12,7 +12,7 @@ Parameters:
  --output (-o) path/to/key.pfx        default to cert.pfx located in same directory as --cert
  --help (-h)                          Prints cli usage
  --dryrun (-d)                        Will run all code except writing of pfx
- --clobber (-c)                       Overwrite pfx if already existing
+ --clobber (-C)                       Overwrite pfx if already existing
 ```
 Important: set an environment variable PKCS_PASSWORD to the password you want eg:
 
