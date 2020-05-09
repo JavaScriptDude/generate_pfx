@@ -114,7 +114,7 @@ def main(argv):
     )
 
     # Generate PFX
-    pfx = crypto.PKCS12Type()
+    pfx = crypto.PKCS12()
     pfx.set_privatekey(privkey)
     pfx.set_certificate(cert)
     pfxdata = pfx.export(os.environ["PKCS_PASSWORD"])
