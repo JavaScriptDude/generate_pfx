@@ -55,7 +55,7 @@ def main(argv):
     try:
         goOpts, goArgs = getopts(
              argv
-            , "hcdp:c:o:"
+            , "hCdp:c:o:"
             ,["help", "clobber", "dryrun", "privkey=", "cert=", "output="]
         )
     except getopt.GetoptError as exc:
